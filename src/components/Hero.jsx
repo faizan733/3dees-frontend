@@ -1,14 +1,21 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import heroBg from '../assets/png/hero.png'; // <-- update path if needed
+import { useNavigate } from 'react-router-dom'; // 👈 import this
+import heroBg from '../assets/png/hero.png';
 
 const Hero = () => {
+  const navigate = useNavigate(); // 👈 initialize navigation
+
+  const handleGetStarted = () => {
+    navigate('/dashboard'); // 👈 navigate to dashboard route
+  };
+
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center justify-center"
     >
-      {/* Background Image using imported PNG */}
+      {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-10"
         style={{ backgroundImage: `url(${heroBg})` }}
@@ -39,19 +46,14 @@ const Hero = () => {
             READY TO LAUNCH YOUR OWN 3DEE?
           </h2>
 
-          <button className="bg-red-600  text-white px-8 py-4 rounded-lg text-xl font-bold  flex items-center gap-2 mx-auto">
+          <button
+            onClick={handleGetStarted} // 👈 add onClick
+            className="bg-red-600 text-white px-8 py-4 rounded-lg text-xl font-bold flex items-center gap-2 mx-auto"
+          >
             GET STARTED
-            {/* <ArrowRight size={24} /> */}
           </button>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
-        </div>
-      </div> */}
     </section>
   );
 };

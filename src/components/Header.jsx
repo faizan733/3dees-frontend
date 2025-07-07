@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import logo from '../assets/png/logo.png'; // adjust path as needed
+import { useNavigate } from 'react-router-dom';
+import logo from '../assets/png/logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate(); // 👈 this hook allows redirection
+
+  const handleSignIn = () => {
+    navigate('/dashboard'); // 👈 redirects to /dashboard route
+  };
 
   return (
     <header className="fixed top-0 w-full z-50 bg-black">
@@ -11,14 +17,13 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           
           {/* Logo */}
-         {/* Logo */}
-<div className="flex items-center">
-  <img
-    src={logo}
-    alt="3DEES3RD Logo"
-    className="h-8 w-auto object-contain" // You can tweak h-8 to h-6 or h-10 if needed
-  />
-</div>
+          <div className="flex items-center">
+            <img
+              src={logo}
+              alt="3DEES3RD Logo"
+              className="h-8 w-auto object-contain"
+            />
+          </div>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex space-x-8">
@@ -31,7 +36,10 @@ const Header = () => {
 
           {/* Desktop Sign In */}
           <div className="hidden md:block">
-            <button className="bg-red-600 px-6 py-2 rounded-lg font-semibold text-white hover:bg-red-700 transition-colors">
+            <button
+              onClick={handleSignIn}
+              className="bg-red-600 px-6 py-2 rounded-lg font-semibold text-white hover:bg-red-700 transition-colors"
+            >
               Sign In
             </button>
           </div>
@@ -57,7 +65,10 @@ const Header = () => {
             <a href="#characters" className="block px-3 py-2 text-gray-300 hover:text-white">Characters</a>
             <a href="#roadmap" className="block px-3 py-2 text-gray-300 hover:text-white">Roadmap</a>
             <a href="#faq" className="block px-3 py-2 text-gray-300 hover:text-white">FAQ</a>
-            <button className="w-full text-left px-3 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold text-white transition-colors">
+            <button
+              onClick={handleSignIn}
+              className="w-full text-left px-3 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-semibold text-white transition-colors"
+            >
               Sign In
             </button>
           </div>
